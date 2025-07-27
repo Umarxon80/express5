@@ -1,10 +1,10 @@
 const multer=require("multer")
 const path=require("path")
 
-
+const uploadPath = path.join(__dirname, 'upload');
 const store=multer.diskStorage({
     destination: (req,file,cb)=>{
-        cb(null,"upload")
+        cb(null,uploadPath)
     },
     filename:(req,file,cb)=>{
         let ext=path.extname(file.originalname)

@@ -1,4 +1,4 @@
-const Product = require("../backend/models/products");
+const Product = require("../models/products");
 const express = require("express");
 const app = express.Router();
 const upload = require("./upload");
@@ -31,13 +31,17 @@ app.post("", upload.single("img"), async (req, res) => {
   if (req.file && req.file.filename) {
     req.body.img = req.file.filename;
   }
+  
   let body = req.body;
   try {
-    let nline = new Product(body);
+    let nline = new Product(body); 
     await nline.save();
+    
+    console.log(nline);
     res.send(nline);
+    
   } catch (e) {
-    res.send({ messsage: e.messsage });
+    res.send({ message: e.message });
   }
 });
 
@@ -51,7 +55,7 @@ app.patch("/:id", upload.single("img"), async (req, res) => {
     let nline = await Product.findByIdAndUpdate(id, body, { new: true });
     res.send(nline);
   } catch (e) {
-    res.send({ messsage: e.messsage });
+    res.send({ message: e.message });
   }
 });
 
@@ -61,7 +65,7 @@ app.delete("/:id", async (req, res) => {
     let nline = await Product.findByIdAndDelete(id);
     res.send(nline);
   } catch (e) {
-    res.send({ messsage: e.messsage });
+    res.send({ message: e.message });
   }
 });
 

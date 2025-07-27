@@ -1,4 +1,4 @@
-const Category = require("../backend/models/category");
+const Category = require("../models/category");
 const express = require("express");
 const app = express.Router();
 const upload = require("./upload");

@@ -1,4 +1,4 @@
-const User = require("../backend/models/users");
+const User = require("../models/users");
 const express = require("express");
 const upload = require("./upload");
 
